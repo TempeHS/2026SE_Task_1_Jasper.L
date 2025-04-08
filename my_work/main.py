@@ -43,8 +43,17 @@ def menu():
             print('Please enter a valid option')
 
 def passwordchange():
-    print('Password changed successfully')
-    main()
+    while True:
+        nuser = input('Username? ')
+        npass = input('New password? ')
+        nlog = f'{nuser},{npass}'
+        if len(npass) < 4:
+            print('Password must be minimum 4 characters')
+        else:
+            with open('plain_text.txt', 'a') as file:
+                file.write(f'{nlog}\n')
+            print('Password changed successfully')
+            break
 
 def selection():
     while True:
@@ -52,7 +61,8 @@ def selection():
         try:
             select = int(input('Choice? '))
             if select == 1:
-                if login() == True:
+                mybool = bool(login())
+                if mybool == True:
                     return True
             if select == 2:
                 register()
@@ -63,7 +73,10 @@ def selection():
             print('Please enter a valid option\n')
 
 def main():
-    if selection() == True:
+    mybool = bool(selection())
+    if mybool == True:
         menu()
+    if mybool == False:
+        quit
 
 main()
