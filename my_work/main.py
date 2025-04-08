@@ -3,7 +3,6 @@ with open('plain_text.txt', 'r') as file:
     datalog = file.readlines()
 for login in datalog:
     logins.append(login.strip('\n'))
-print(logins)
 
 def login():
     iuser = input('Username? ')
@@ -31,33 +30,37 @@ def register():
 
 def menu():
     while True:
-        print(f'1. Change password\n2. Logout')
+        print('Logged in successfully\n')
+        print(f'1. Change password\n2. Logout\n')
         try:
             select = int(input('Choice? '))
             if select == 1:
                 passwordchange()
             if select == 2:
-                print('Logging out')
+                print('\nLogging out')
                 break
         except (ValueError, UnboundLocalError):
             print('Please enter a valid option')
 
+def passwordchange():
+    print('Password changed successfully')
+    main()
 
 def selection():
     while True:
-        print(f'1. Login\n2. Register\n3. Quit')
+        print(f'\n1. Login\n2. Register\n3. Quit\n')
         try:
             select = int(input('Choice? '))
-        except ValueError:
-            print('Please enter a valid option')
-        if select == 1:
-            if login() == True:
-                return True
-        if select == 2:
-            register()
-        if select == 3:
-            print('Quitting')
-            return False
+            if select == 1:
+                if login() == True:
+                    return True
+            if select == 2:
+                register()
+            if select == 3:
+                print('\nQuitting')
+                return False
+        except (ValueError, UnboundLocalError):
+            print('Please enter a valid option\n')
 
 def main():
     if selection() == True:
