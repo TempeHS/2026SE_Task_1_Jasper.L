@@ -34,13 +34,13 @@ def menu():
         print(f'1. Change password\n2. Logout')
         try:
             select = int(input('Choice? '))
-        except ValueError:
+            if select == 1:
+                passwordchange()
+            if select == 2:
+                print('Logging out')
+                break
+        except (ValueError, UnboundLocalError):
             print('Please enter a valid option')
-        if select == 1:
-            passwordchange()
-        if select == 2:
-            print('Logging out')
-            break
 
 
 def selection():
